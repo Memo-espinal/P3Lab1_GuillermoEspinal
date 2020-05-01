@@ -1,7 +1,75 @@
 #include <windows.h>
 #include <iostream>
 
-using namespace std
+using namespace std;
+
+#define max 100
+
+int primocheck(int numero){
+	//cout<<"entre a la func";
+	bool primo=true ;
+	int i ;
+	for(i=2; i<=numero/2; ++i) {
+      if(numero%i==0) {
+         primo=false ;
+         break;
+      }
+   }
+   if (primo==true){
+   	
+   	return numero;
+   	
+   }else {
+   		numero =numero+1;
+   		primocheck(numero);
+   }
+	
+}
+
+int main(){
+	//int max =100;
+	int numero;
+	cout<< "Ingrese un numero menor que 100 :";
+	cin >> numero ;
+	while (numero >max) {
+		cout<< "El numero tiene que ser menor que 100, vuelva a ingresarlo : ";
+		cin >> numero;
+		
+	}
+	int primo1,primo2;
+	primo1=2 ;
+	primo2=2 ;
+	
+	while (primo1+primo2<=numero){//||(primo1+primo2==numero)){
+	
+		int resultado = primo1+primo2;
+		int resultado_avanzado= resultado;
+		
+		cout <<primo1 <<" + "<<primo2<<" = "<< resultado << endl;
+		//focus despues de esto ademas de que hay que buscar una forma de saber como unnumero es primo
+		primo2++;
+		
+		//mirate aqui dqu
+		primo2=primocheck(primo2);
+		
+		resultado=primo1+primo2;
+		
+		if (resultado == resultado_avanzado+2){
+			resultado_avanzado= resultado; 
+			
+		}else {
+			primo1++;
+			primo1=primocheck(primo1);
+		}
+		
+		
+	}
+	cout <<"por aqui voy";
+	
+}
+
+
+
 
 
 
@@ -24,6 +92,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam) 
 
 /* The 'main' function of Win32 GUI programs: this is where execution starts */
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
+
+
+	
 	WNDCLASSEX wc; /* A properties struct of our window */
 	HWND hwnd; /* A 'HANDLE', hence the H, or a pointer to our window */
 	MSG msg; /* A temporary location for all messages */
