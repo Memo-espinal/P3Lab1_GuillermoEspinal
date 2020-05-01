@@ -31,8 +31,8 @@ int main(){
 	int numero;
 	cout<< "Ingrese un numero menor que 100 :";
 	cin >> numero ;
-	while (numero >max) {
-		cout<< "El numero tiene que ser menor que 100, vuelva a ingresarlo : ";
+	while ((numero >max)||(numero<=0)) {
+		cout<< "El numero tiene que ser menor que 100 y positivo, vuelva a ingresarlo : ";
 		cin >> numero;
 		
 	}
@@ -40,12 +40,15 @@ int main(){
 	primo1=2 ;
 	primo2=2 ;
 	
+	
 	while (primo1+primo2<=numero){//||(primo1+primo2==numero)){
 	
 		int resultado = primo1+primo2;
 		int resultado_avanzado= resultado;
 		
-		cout <<primo1 <<" + "<<primo2<<" = "<< resultado << endl;
+		cout <<primo1 <<" + "<<primo2<<" = "<< resultado_avanzado << endl;
+		
+		if (primo1+primo2<resultado_avanzado+2){
 		//focus despues de esto ademas de que hay que buscar una forma de saber como unnumero es primo
 		primo2++;
 		
@@ -53,17 +56,17 @@ int main(){
 		primo2=primocheck(primo2);
 		
 		resultado=primo1+primo2;
-		
+		}
 		if (resultado == resultado_avanzado+2){
 			resultado_avanzado= resultado; 
 			
 		}else {
 			primo1++;
 			primo1=primocheck(primo1);
+				resultado=primo1+primo2;
 		}
-		
-		
-	}
+	
+	 }
 	cout <<"por aqui voy";
 	
 }
